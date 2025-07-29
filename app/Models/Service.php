@@ -12,4 +12,10 @@ class Service extends Model
         'price',
         'status',
     ];
+
+    /* relationship with bookings */
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
 }

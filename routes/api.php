@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\BookingController;
 
 /* show all user */
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
@@ -69,3 +70,13 @@ Route::middleware(['auth:sanctum'])->put('/services/{id}', [ServiceController::c
 
 /* delete service */
 Route::middleware(['auth:sanctum'])->delete('/services/{id}', [ServiceController::class, 'destroy']);
+
+/* show all bookings */
+Route::middleware(['auth:sanctum'])->get('/bookings', [BookingController::class, 'index']);
+
+/* show booking detail */
+Route::middleware(['auth:sanctum'])->get('/bookings/{id}', [BookingController::class, 'show']);
+
+/* create new booking */
+Route::middleware(['auth:sanctum'])->post('/bookings', [BookingController::class, 'store']);
+
