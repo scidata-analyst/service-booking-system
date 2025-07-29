@@ -15,7 +15,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 /* login api */
-Route::post('/login', function (Request $request) {
+Route::middleware(['throttle:api/login'])->post('/login', function (Request $request) {
     $request->validate([
         'email' => 'required|string|email',
         'password' => 'required|string',
@@ -36,7 +36,7 @@ Route::post('/login', function (Request $request) {
 });
 
 /* register api */
-Route::post('/register', function (Request $request) {
+Route::middleware(['throttle:api/register'])->post('/register', function (Request $request) {
     Log::info("register api done");
     $request->validate([
         'name' => 'required|string|max:255',
