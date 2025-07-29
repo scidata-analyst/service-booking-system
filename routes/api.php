@@ -57,26 +57,26 @@ Route::post('/register', function (Request $request) {
 });
 
 /* show all services */
-Route::middleware(['auth:sanctum'])->get('/services', [ServiceController::class, 'index']);
+Route::middleware(['auth:sanctum', 'role:admin,user'])->get('/services', [ServiceController::class, 'index']);
 
 /* show service detail */
-Route::middleware(['auth:sanctum'])->get('/services/{id}', [ServiceController::class, 'show']);
+Route::middleware(['auth:sanctum', 'role:admin'])->get('/services/{id}', [ServiceController::class, 'show']);
 
 /* create service */
-Route::middleware(['auth:sanctum'])->post('/services', [ServiceController::class, 'store']);
+Route::middleware(['auth:sanctum', 'role:admin'])->post('/services', [ServiceController::class, 'store']);
 
 /* update service */
-Route::middleware(['auth:sanctum'])->put('/services/{id}', [ServiceController::class, 'update']);
+Route::middleware(['auth:sanctum', 'role:admin'])->put('/services/{id}', [ServiceController::class, 'update']);
 
 /* delete service */
-Route::middleware(['auth:sanctum'])->delete('/services/{id}', [ServiceController::class, 'destroy']);
+Route::middleware(['auth:sanctum', 'role:admin'])->delete('/services/{id}', [ServiceController::class, 'destroy']);
 
 /* show all bookings */
-Route::middleware(['auth:sanctum'])->get('/bookings', [BookingController::class, 'index']);
+Route::middleware(['auth:sanctum', 'role:admin,user'])->get('/bookings', [BookingController::class, 'index']);
 
 /* show booking detail */
-Route::middleware(['auth:sanctum'])->get('/bookings/{id}', [BookingController::class, 'show']);
+Route::middleware(['auth:sanctum', 'role:admin'])->get('/bookings/{id}', [BookingController::class, 'show']);
 
 /* create new booking */
-Route::middleware(['auth:sanctum'])->post('/bookings', [BookingController::class, 'store']);
+Route::middleware(['auth:sanctum', 'role:user'])->post('/bookings', [BookingController::class, 'store']);
 
