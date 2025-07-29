@@ -33,7 +33,7 @@ class BookingController extends Controller
     {
         $request->validate([
             'service_id' => 'required|exists:services,id',
-            'booking_date' => 'required',
+            'booking_date' => 'required|string|not_past_date',
             'status' => 'required|string|max:255',
         ]);
 
