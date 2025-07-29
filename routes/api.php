@@ -13,7 +13,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 /* login api */
-Route::post('/auth/login', function (Request $request) {
+Route::post('/login', function (Request $request) {
     $request->validate([
         'email' => 'required|string|email',
         'password' => 'required|string',
@@ -34,7 +34,7 @@ Route::post('/auth/login', function (Request $request) {
 });
 
 /* register api */
-Route::post('/auth/register', function (Request $request) {
+Route::post('/register', function (Request $request) {
     Log::info("register api done");
     $request->validate([
         'name' => 'required|string|max:255',
