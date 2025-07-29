@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\ServiceController;
 
 /* show all user */
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
@@ -53,3 +54,18 @@ Route::post('/register', function (Request $request) {
         'token' => $user->createToken('auth_token')->plainTextToken
     ]);
 });
+
+/* show all services */
+Route::middleware(['auth:sanctum'])->get('/services', [ServiceController::class, 'index']);
+
+/* show service detail */
+Route::middleware(['auth:sanctum'])->get('/services/{id}', [ServiceController::class, 'show']);
+
+/* create service */
+Route::middleware(['auth:sanctum'])->post('/services', [ServiceController::class, 'store']);
+
+/* update service */
+Route::middleware(['auth:sanctum'])->put('/services/{id}', [ServiceController::class, 'update']);
+
+/* delete service */
+Route::middleware(['auth:sanctum'])->delete('/services/{id}', [ServiceController::class, 'destroy']);
